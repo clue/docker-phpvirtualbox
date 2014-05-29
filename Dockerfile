@@ -2,8 +2,8 @@ FROM ubuntu
 MAINTAINER Christian Lück <christian@lueck.tv>
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
-  nginx php5-fpm supervisor openssh-client \
-  wget unzip
+  nginx php5-fpm supervisor \
+  wget unzip php5-cli
 
 # install phpvirtualbox
 RUN wget http://sourceforge.net/projects/phpvirtualbox/files/phpvirtualbox-4.3-1.zip/download -O phpvirtualbox-4.3-1.zip
@@ -21,7 +21,16 @@ WORKDIR /var/www
 
 # use supervisor to monitor all services
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-CMD supervisord -c /etc/supervisor/conf.d/supervisord.conf
+
+# add startup script to write linked instances to server config
+ADD servers-from-env.php /servers-from-env.php
+
+# add empty dummy config that will be overwritten by CMD script
+RUN echo "<?php return array(); ?>" > /var/www/config-servers.php
+
+# write linked instances to config, then monitor all services
+CMD php /servers-from-env.php && \
+  supervisord -c /etc/supervisor/conf.d/supervisord.conf
 
 # expose only nginx HTTP port
 EXPOSE 80

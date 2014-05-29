@@ -10,9 +10,7 @@ class phpVBoxConfig {
 
 public function __construct()
 {
-    if (getenv('HOST_PORT')) {
-        $this->location = 'http://' . str_replace('tcp://', '', getenv('HOST_PORT')) . '/';
-    }
+    $this->servers = require __DIR__ . '/config-servers.php';
 }
 
 /* Username / Password for system user that runs VirtualBox */
