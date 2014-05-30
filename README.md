@@ -62,7 +62,7 @@ Now that all `vboxwebsrv` instance are up, we can link everything together and s
 The recommended way to run this container looks like this:
 
 ```bash
-$ docker run -d --link vb2:MyFirstComputer --link vb3:MySecondComputer -p 80:80 clue/phpvirtualbox
+$ docker run -d --link vb2:FirstPC --link vb3:MyLaptop -p 80:80 clue/phpvirtualbox
 ```
 
 You can now point your webbrowser to this URL:
