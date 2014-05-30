@@ -51,7 +51,7 @@ $ docker run -it --name=vb3 clue/vboxwebsrv myuser@10.1.1.3
 ```
 
 This will start an interactive container that will establish a connection to the given host.
-To establish an encrypted SSH connection it will likely ask for your password for each user. This is the user that runs your virtual machines (VMs). See [clue/vboxwebsrv](https://github.com/clue/vboxwebsrv) for more details.
+To establish an encrypted SSH connection it will likely ask for your password for each user. This is the user that runs your virtual machines (VMs). See [clue/vboxwebsrv](https://github.com/clue/docker-vboxwebsrv) for more details.
 
 > Some background: The official readme describes setting up the `vboxwebsrv` daemon so
 > that it is automatically started when the machine boots up and is exposed over the network.
