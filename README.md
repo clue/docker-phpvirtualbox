@@ -57,6 +57,14 @@ To establish an encrypted SSH connection it will likely ask for your password fo
 > that it is automatically started when the machine boots up and is exposed over the network.
 > Instead of requiring this upfront configuration, we only spawn the `vboxwebsrv` on demand
 > and expose its socket only through an encrypted SSH tunnel.
+>
+> In fact, if you already have your `vboxwebsrv` set up, you don't have to rely on
+> the clue/vboxwebrv container. In this case, you can substitute the following link by
+> supplying ENV variables instead. You can also pass a visual name like this:
+>
+> ```bash
+> -e VB3_PORT_18083_TCP=10.1.1.4:18083 -e VB3_NAME=MyServer
+> ```
 
 Now that all `vboxwebsrv` instance are up, we can link everything together and start our actual phpVirtualBox container.
 The recommended way to run this container looks like this:
