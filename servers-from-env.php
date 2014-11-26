@@ -42,4 +42,3 @@ if (!$servers) {
 
 $config = '<?php return ' . var_export($servers, true) . ';';
 file_put_contents('/var/www/config-servers.php', $config);
-
