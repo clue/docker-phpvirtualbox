@@ -160,7 +160,7 @@ var $hostMemInfoRefreshInterval = 5;
 /*
  * Display guest additions version of a running VM on its Details tab
  */
-#var $enableGuestAdditionsVersionDisplay = true;
+var $enableGuestAdditionsVersionDisplay = true;
 
 /* Disable any of phpVirtualBox's main tabs */
 #var $disableTabVMSnapshots = true; // Snapshots tab
@@ -178,7 +178,7 @@ var $nicMax = 4;
 /* Enable advanced configuration items (normally hidden in the VirtualBox GUI)
  * Note that some of these items may not be translated to languages other than English. 
  */
-#var $enableAdvancedConfig = true;
+var $enableAdvancedConfig = true;
 
 /* Enable startup / shutdown configuration.
  * This only works in linux and you must add the vboxinit file to
