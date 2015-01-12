@@ -35,7 +35,7 @@ this image.
 
 Internally, the phpVirtualBox web interface communicates with each VirtualBox installation through the
 `vboxwebsrv` program that is installed as part of VirtualBox.
-So for every computer connected to the phpVirtualbox instance, we're going to use minimal container
+So for every computer connected to the phpVirtualbox instance, we're going to use a minimal container
 that eases exposing the `vboxwebsrv`.
 
 For PC2:
@@ -53,7 +53,7 @@ $ docker run -it --name=vb3 clue/vboxwebsrv myuser@10.1.1.3
 This will start an interactive container that will establish a connection to the given host.
 To establish an encrypted SSH connection it will likely ask for your password for each user. This is the user that runs your virtual machines (VMs). See [clue/vboxwebsrv](https://github.com/clue/docker-vboxwebsrv) for more details.
 
-> Some background: The official readme describes setting up the `vboxwebsrv` daemon so
+> Some background: The official phpVirtualBox readme describes setting up the `vboxwebsrv` daemon so
 > that it is automatically started when the machine boots up and is exposed over the network.
 > Instead of requiring this upfront configuration, we only spawn the `vboxwebsrv` on demand
 > and expose its socket only through an encrypted SSH tunnel.
