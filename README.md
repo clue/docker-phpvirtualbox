@@ -63,7 +63,7 @@ To establish an encrypted SSH connection it will likely ask for your password fo
 > supplying ENV variables instead. You can also pass a visual name like this:
 >
 > ```bash
-> -e VB3_PORT_18083_TCP=10.1.1.4:18083 -e VB3_NAME=MyServer
+> -e VB3_PORT_18083_TCP=10.1.1.4:18083 -e VB3_NAME=MyServer -e VB3_USER=VirtualBoxUserName -e VB3_PASSWORD=VirtualBoxUserPassword
 > ```
 
 Now that all `vboxwebsrv` instance are up, we can link everything together and start our actual phpVirtualBox container.
