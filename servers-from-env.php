@@ -12,6 +12,9 @@ foreach ($_SERVER as $key => $value) {
 
         // actual readable name is stored as "/thiscontainer/givencontainer"
         $name = getenv($prefix . '_NAME');
+        $user = getenv($prefix . '_USER');
+        $pass = getenv($prefix . '_PASSWORD');
+
         $pos = strrpos($name, '/');
         if ($pos !== false) {
             $name = substr($name, $pos + 1);
@@ -27,8 +30,8 @@ foreach ($_SERVER as $key => $value) {
 
         $servers []= array(
             'name' => $name,
-            'username' => 'username',
-            'password' => 'password',
+            'username' => false === $user ? 'username' : $user,
+            'password' => false === $pass ? 'password' : $pass,
             'authMaster' => true,
             'location' => $location
         );
