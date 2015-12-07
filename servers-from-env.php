@@ -27,8 +27,8 @@ foreach ($_SERVER as $key => $value) {
 
         $servers []= array(
             'name' => $name,
-            'username' => 'username',
-            'password' => 'password',
+            'username' => 'vbox',
+            'password' => 'pass',
             'authMaster' => true,
             'location' => $location
         );

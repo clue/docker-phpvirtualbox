@@ -1,7 +1,7 @@
 <?php
 /**
  * phpVirtualBox example configuration. 
- * @version $Id: config.php-example 452 2012-10-17 12:22:12Z imooreyahoo@gmail.com $
+ * @version $Id: config.php-example 585 2015-04-04 11:39:31Z imoore76 $
  *
  * rename to config.php and edit as needed.
  *
@@ -10,12 +10,12 @@ class phpVBoxConfig {
 
 public function __construct()
 {
-    $this->servers = require __DIR__ . '/config-servers.php';
+    $this->servers = require(__DIR__ . '/config-servers.php');
 }
 
 /* Username / Password for system user that runs VirtualBox */
-var $username = '';
-var $password = '';
+var $username = 'vbox';
+var $password = 'pass';
 
 /* SOAP URL of vboxwebsrv (not phpVirtualBox's URL) */
 var $location = 'http://127.0.0.1:18083/';
@@ -27,7 +27,7 @@ var $location = 'http://127.0.0.1:18083/';
 var $language = 'en';
 
 /* Set the standard VRDE Port Number / Range, e.g. 1010-1020 or 1027 */
-var $vrdeports = '9000-9100';
+var $vrdeports = '33891-33899';
 
 /*
  *
@@ -38,7 +38,6 @@ var $vrdeports = '9000-9100';
 // Multiple servers example config. Uncomment (remove /* and */) to use.
 // Add ALL the servers you want to use. Even if you have the server set
 // above. The default server will be the first one in the list.
-
 /*
 var $servers = array(
         array(
@@ -49,7 +48,7 @@ var $servers = array(
                 'authMaster' => true // Use this server for authentication
         ),
         array(
-                'name' => '',
+                'name' => 'New York',
                 'username' => 'user2',
                 'password' => 'pass2',
                 'location' => 'http://192.168.1.2:18083/'
@@ -178,7 +177,7 @@ var $nicMax = 4;
 /* Enable advanced configuration items (normally hidden in the VirtualBox GUI)
  * Note that some of these items may not be translated to languages other than English. 
  */
-#var $enableAdvancedConfig = true;
+var $enableAdvancedConfig = true;
 
 /* Enable startup / shutdown configuration.
  * This only works in linux and you must add the vboxinit file to
@@ -217,6 +216,11 @@ LPT support may or may not work for you.
 */
 #var $enableHDFlushConfig = true;
 
+/*
+ * Event listener timeout in seconds. This is an advanced option that most people will
+ * probably not need to change.
+ */
+#var $eventListenerTimeout = 20;
 
 /* END SETTINGS  */
 
