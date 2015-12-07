@@ -5,7 +5,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
   wget unzip supervisor \
   nginx php5-fpm php5-cli
 
-ENV PHPVBOX_NAME phpvirtualbox-5.0-3
+ENV PHPVBOX_NAME phpvirtualbox-5.0-4
 
 # install phpvirtualbox for 5.0
 #RUN wget http://sourceforge.net/projects/phpvirtualbox/files/$PHPVBOX_NAME.zip/download -O /var/$PHPVBOX_NAME.zip && \
