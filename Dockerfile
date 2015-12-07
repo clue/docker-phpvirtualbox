@@ -1,32 +1,34 @@
-FROM ubuntu
-MAINTAINER Christian Lück <christian@lueck.tv>
+FROM debian:jessie
+MAINTAINER Leigh Phillips <neurocis@qlustor.com>
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
-  nginx php5-fpm supervisor \
-  wget unzip php5-cli
+  wget unzip supervisor \
+  nginx php5-fpm php5-cli
+
+ENV PHPVBOX_NAME phpvirtualbox-5.0-4
 
 # install phpvirtualbox
-RUN wget http://sourceforge.net/projects/phpvirtualbox/files/phpvirtualbox-4.3-1.zip/download -O phpvirtualbox-4.3-1.zip
-RUN unzip phpvirtualbox-4.3-1.zip
-RUN mv phpvirtualbox-4.3-1 /var/www
+#RUN wget http://sourceforge.net/projects/phpvirtualbox/files/$PHPVBOX_NAME.zip/download -O /var/$PHPVBOX_NAME.zip && \
+RUN wget http://www.mirrorservice.org/sites/downloads.sourceforge.net/p/ph/phpvirtualbox/$PHPVBOX_NAME.zip -O /var/$PHPVBOX_NAME.zip && \
+    unzip /var/$PHPVBOX_NAME.zip -d /var && \
+    mv /var/$PHPVBOX_NAME/* /var/www && \
+    rm /var/$PHPVBOX_NAME.zip && \
+    echo "<?php return array(); ?>" > /var/www/config-servers.php && \
+    chown www-data:www-data -R /var/www
+#    chown nginx:nginx -R /var/www
 ADD config.php /var/www/config.php
-RUN chown www-data:www-data -R /var/www
 
 # add phpvirtualbox as the only nginx site
 ADD phpvirtualbox.nginx.conf /etc/nginx/sites-available/phpvirtualbox
-RUN ln -s /etc/nginx/sites-available/phpvirtualbox /etc/nginx/sites-enabled/phpvirtualbox
-RUN rm /etc/nginx/sites-enabled/default
-
-WORKDIR /var/www
+RUN mkdir -p /etc/nginx/sites-enabled && \
+    ln -s /etc/nginx/sites-available/phpvirtualbox /etc/nginx/sites-enabled/phpvirtualbox && \
+    rm -f /etc/nginx/sites-enabled/default
 
 # use supervisor to monitor all services
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # add startup script to write linked instances to server config
 ADD servers-from-env.php /servers-from-env.php
-
-# add empty dummy config that will be overwritten by CMD script
-RUN echo "<?php return array(); ?>" > /var/www/config-servers.php
 
 # write linked instances to config, then monitor all services
 CMD php /servers-from-env.php && \
