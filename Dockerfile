@@ -7,7 +7,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
 
 ENV PHPVBOX_NAME phpvirtualbox-5.0-4
 
-# install phpvirtualbox for 5.0
+# install phpvirtualbox
 #RUN wget http://sourceforge.net/projects/phpvirtualbox/files/$PHPVBOX_NAME.zip/download -O /var/$PHPVBOX_NAME.zip && \
 RUN wget http://www.mirrorservice.org/sites/downloads.sourceforge.net/p/ph/phpvirtualbox/$PHPVBOX_NAME.zip -O /var/$PHPVBOX_NAME.zip && \
     unzip /var/$PHPVBOX_NAME.zip -d /var && \
